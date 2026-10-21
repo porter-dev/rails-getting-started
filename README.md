@@ -59,7 +59,7 @@ Set `SECRET_KEY_BASE` on the app in the dashboard or through an environment grou
 | Field | Value | Purpose |
 | --- | --- | --- |
 | `build.method` | `docker` | Builds the `Dockerfile` at the repo root |
-| `run` | `./bin/rails server` | Starts Puma. The entrypoint runs `bin/rails db:prepare` first |
+| `run` | `/rails/bin/docker-entrypoint ./bin/rails server` | Runs `bin/rails db:prepare`, then starts Puma. Porter replaces the image entrypoint with `run`, so the entrypoint is called explicitly |
 | `port` | `3000` | Port Puma listens on |
 | `cpuCores` / `ramMegabytes` | `0.5` / `512` | Resources per instance |
 | `healthCheck.httpPath` | `/up` | Rails' built-in health check |

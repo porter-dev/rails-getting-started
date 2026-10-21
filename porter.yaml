@@ -7,7 +7,7 @@ build:
 services:
   - name: web
     type: web
-    run: ./bin/rails server
+    run: /rails/bin/docker-entrypoint ./bin/rails server
     port: 3000
     cpuCores: 0.5
     ramMegabytes: 512
