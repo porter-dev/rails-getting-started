@@ -6,7 +6,7 @@
 #
 default: &default
   adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
 development:
@@ -20,6 +20,9 @@ test:
   <<: *default
   database: storage/test.sqlite3
 
+# SQLite in a container is lost on every deploy. For persistent data set
+# DATABASE_URL (for example to a Porter Postgres datastore); Rails merges it
+# over this config and uses the adapter from the URL.
 production:
   <<: *default
   database: storage/production.sqlite3
